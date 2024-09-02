@@ -1,0 +1,16 @@
+[Unit]
+Description=Openconnect VPN
+After=network-online.target
+Conflicts=shutdown.target sleep.target
+
+[Service]
+Type=forking
+EnvironmentFile=/etc/default/openconnect
+ExecStart=/usr/local/bin/openconnect-launch
+TimeoutStartSec=120s
+KillSignal=SIGINT
+Restart=always
+RestartSec=10s
+
+[Install]
+WantedBy=multi-user.target
